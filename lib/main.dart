@@ -3,16 +3,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'authentication/login_screen.dart';
+import 'firebase_options.dart';
 import 'main_screens/home_screen.dart';
 
-Future<void> main() async
-{
-  await Firebase.initializeApp();
+Future<void> main() async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget
-{
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -23,9 +22,9 @@ class MyApp extends StatelessWidget
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: FirebaseAuth.instance.currentUser == null ? const LoginScreen() : const HomeScreen(),
+      home: FirebaseAuth.instance.currentUser == null
+          ? const LoginScreen()
+          : const HomeScreen(),
     );
   }
 }
-
-
